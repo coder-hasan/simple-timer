@@ -1,68 +1,47 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## About State
 
-In the project directory, you can run:
+ReactJS এর সব থেকে গুরুত্বপূর্ণ এবং অদ্ভুত বিষয় হচ্ছে State, দেখতে ক্লাস প্রোপার্টি এর মত। সাধারণ একটা জাভাস্ক্রিপ্টের অবজেক্ট। কিন্তু এর ভিতরে কিছু ম্যাজিক্যাল পাওয়ার রয়েছে।
 
-### `npm start`
+আমরা জানি ReactJS এ সব কিছু করতে হয় ডাটা এর ওপরে ভিত্তি করে। ডাটা থেকে ভিউ জেনেরেট করতে হয়, কোন ভাবে যদি ডাটাটা পরিবর্তন করা যায় তাহলে ভিউটা নিজে থেকেই আপডেট হয়ে যায়। কিন্তু সাধারণ ভাবে আমরা যদি কোন ভ্যারিয়েবল এর ভিতরে ডাটাটা রাখি তাহলে ডাটা পরিবর্তিত হলেও ভিউ পরিবর্তন হবে না। একটা special ভ্যারিয়েবলের ভিতরেই ডাটাটা রাখতে হবে। আর সেই special ভ্যারিয়েবল বা ক্লাস প্রোপার্টি হচ্ছে State.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## React এর State কিভাবে কাজ করে?
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+React এ State একটা immutable object, একটা নির্দিষ্ট ফাংশন কল করার মাধ্যমেই আমরা State কে পরিবর্তন করতে পারি। সেই ফাংশনটার নাম হচ্ছে setState। এই ফাংশন কল করার মাধ্যমে আমরা যখন কোন State পরিবর্তন করি তখন React আবার render মেথডকে কল করে এবং কল করার সময় State এর নতুন ডাটাটা পাঠিয়ে দেই। render মেথড কল হওয়ার ফলে JSX গুলো আবার রেন্ডার হয় ব্রাউজারে। এভাবেই মূলত State পরিবর্তনের কারণে আমরা নতুন ভিউ দেখতে পাই। কিন্তু অন্য কোন ভ্যারিয়েবল বা ক্লাস প্রোপার্টি পরিবর্তন হলে React render মেথড কে রিকল করে না। তাই ভ্যারিয়েবলের ভ্যালূ পরিবর্তিত হলেও ভিউ আগেরটাই থেকে যায়।
 
-### `npm test`
+## State কিভাবে ডিফাইন করতে হয়?
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+State আর দশটা ক্লাস প্রোপার্টির মতই একটা প্রোপার্টি যা আগে থেকেই ডিফাইন করা আছে Component ক্লাসের ভিতরে। তাই State ডিফাইন করার জন্য special কোন মেথড বা সিনট্যাক্স এর দরকার নেই। একটা সাধারণ প্রোপার্টি যে ভাবে ডিফাইন করতে হয়, ঠিক একই ভাবে আমরা State ও ডিফাইন করতে পারি। React এর পুরাতন ভার্সন গুলোতে State ডিফাইন করতে হত কন্সট্রাক্টরের ভিতরে। নতুন ভার্সনে আমরা ক্লাসের যে কোন জায়গায় ভ্যারিয়েবল ডিফাইন করার মত করে State ডিফাইন করতে পারি।
 
-### `npm run build`
+## State কিভাবে আপডেট করতে হয়?
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+State আপডেট করতে হয় Immutable ভাবে, যদিও State দেখতে জাভাস্ক্রিপ্টের সাধারণ অবজেক্টের মত, তারপরেও আমরা সাধারণ অবজেক্টের মত করে State পরিবর্তন করতে পারব না। যদি আমরা সেটা করি তাহলে আমাদের কম্পাইলার কোন ইরর থ্রো করবে না। তবে তখন State সাধারণ অবজেক্ট এর মত ব্যবহার করবে। অর্থাৎ ভ্যালু পরিবর্তন হলেও ভিউ পরিবর্তিত হবে না।
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## State পরিবর্তন করার জন্য React আমাদেরকে setState ফাংশন দিয়েছে। এই setState ফাংশনটা একটা Asynchronous ফাংশন। এই ফাংশন এ আমরা দুইটা আর্গুমেন্ট পাস করতে পারি।
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+প্রথম আর্গুমেন্ট হিসেবে আমরা একটা অবজেক্ট পাস করতে পারি, যেই অবজেক্টটা তে স্টেটের আপডেটেড ভ্যালু থাকবে। অথবা আমরা একটা Annonymous ফাংশন পাস করতে পারি, যেই ফাংশন আপডেটেড অবজেক্টটা রিটার্ন করবে। দুই ক্ষেত্রেই আমরা অবজেক্ট এর ভিতরে শুধু সেই প্রোপার্টি গুলোকেই রাখব যেগুলো আপডেট করতে চাচ্ছি। State এ যদি আরও বেশি প্রোপার্টি থাকে তাহলেও আমাদের এক্সট্রা প্রোপার্টি পাস করতে হবে না। React আমাদের জন্য অন্য প্রোপার্টি গুলোর ভ্যালু অপরিবর্তিত রাখবে।
 
-### `npm run eject`
+দ্বিতীয় আর্গুমেন্ট আকারে আমরা একটা অপশনাল ফাংশন পাস করতে পারি। যেহেতু setState মেথডটা Asynchronous তাই অনেক সময় আমরা আমাদের কাংখিত রেসাল্ট দেখতে পাব না। অনেক সময় আমরা Previous State টাই রেসাল্টে পাব। যদি এমন কোন কিছু দরকার হয় যে, State আপডেট হওয়ার পরেই কোন একটা কাজ করতে হবে সেই কাজটা করার জন্য বেস্ট জায়গা হচ্ছে এই ফাংশনটা।
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Timer Project Problem
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+১। যেই প্রোজেক্টটা করে দেখানো হয়েছে সেই প্রোজেক্টার সাথে মিনিট যুক্ত করতে হবে। প্রজেক্টটাকে লজিক্যাল কম্পোনেন্টে ভাগ করতে হবে।
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+২। একটা ক্যালকুলেটর বানাতে হবে, যেখানে প্রতিটা নাম্বার একটা বাটনের মাধ্যমে ইনপুট নিতে হবে। চারটা অপারেশন ঘটানো যাবে, যোগ বিয়োগ গুন ভাগ এবং একটা ডিসপ্লে থাকবে যেখানে আউটপুট দেখা যাবে। অবশ্যই লজিক্যাল কম্পোনেন্ট এবং প্রপস ব্যবহার করতে হবে।
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## CSS Methods
 
-## Learn More
+আমরা অনেক গুলো ডিফারেন্ট মেথড সম্পর্কে জেনেছি যেগুলো ব্যবহার করে আমরা React অ্যাপ্লিকেশনে Style অ্যাপ্লাই করতে পারি। তবে এখন নিশ্চয়ই আপনাদের মনে একটি প্রশ্ন ঘুরপাক খাচ্ছে যে আমরা কোন মেথডটি ব্যবহার করতে পারি? আপনার সব গুলো মেথডই ব্যবহার করতে পারেন। তবে সব ধরনের কাজের জন্য একটি নির্দিষ্ট মেথড ব্যবহার করাটা বুদ্ধিমানের কাজ হবে না। তাই আমি নিচে ছোট্ট করে ব্যাখ্যা করার চেষ্টা করছি যে কোন সময় কোন মেথডটি ব্যবহার করবেন।
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Inline CSS: 
+এই ক্ষেত্রে আমরা JSX এর ভিতরে style attribute এর মাধ্যমে css লিখে থাকি যা সরাসরি এলিমেন্টকে এফেক্টেড করে। এই css রুলস গুলো কোন ভাবেই অন্য কোন এলিমেন্টকে এফেক্টেড করতে পারেনা আবার একে রিইউজও করা যায় না। তাই বড় কোন কাজে inline css লেখাটা ঠিক হবে না। তারপরে আবার inline এ psudo class বা media queries লেখা সম্ভব নয়।
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## External CSS: 
+যদি আপনি css ব্যবহার করতেই চান তাহলে external css ব্যবহার করাই শ্রেয়, কারণ এখানে আপনি css এর সব গুলো ফিচার ব্যবহার করতে পারছেন। তবে এই ক্ষেত্রে নেমিং কনফ্লিকশন হওয়ার একটা চান্স থেকে যায়। তাই আমাদের উচিত হবে scoped css বা css module ব্যবহার করা।
 
-### Code Splitting
+## CSS Module: 
+আমার মতে সব থেকে ভাল সমাধান হচ্ছে css module ব্যবহার করা। এতে আপনি সব দিক থেকেই সেফ থাকবেন এবং css এর সমস্ত ফিচার ও ব্যবহার করতে পারবেন।
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Styled Component: 
+এটা একটা ভাল সমাধান যদিও আমরা এই কোর্সে এটা নিয়ে আলোচনা করি নি। তবে আপনি যদি জাভাস্ক্রিপ্টের ভিতরেই css লিখতে চান তাহলে আমার মনে হয় এটাই সব থেকে সহজ এবং সুন্দর সমাধান। আপনি যদি বেসিক React শিখে ফেলেন তাহলে এটা শেখার জন্য আপনাকে খুব বেশি কষ্ট করতে হবে না।
