@@ -45,3 +45,130 @@ State আপডেট করতে হয় Immutable ভাবে, যদিও S
 
 ## Styled Component: 
 এটা একটা ভাল সমাধান যদিও আমরা এই কোর্সে এটা নিয়ে আলোচনা করি নি। তবে আপনি যদি জাভাস্ক্রিপ্টের ভিতরেই css লিখতে চান তাহলে আমার মনে হয় এটাই সব থেকে সহজ এবং সুন্দর সমাধান। আপনি যদি বেসিক React শিখে ফেলেন তাহলে এটা শেখার জন্য আপনাকে খুব বেশি কষ্ট করতে হবে না।
+
+## Event কি?
+
+জাভাস্ক্রিপ্টে Event হচ্ছে একটা অবজেক্ট যা একটা নির্দিষ্ট সময়ে কোন একটা কাজ ঘটে যাওয়া সম্পর্কিত যাবতীয় তথ্য ধারণ করে থাকে। সাধারণত ইভেন্টের সাথে অ্যাসোসিয়েটেড কোড গুলো প্রোগ্রাম রান করার সাথে সাথেই এক্সিকিউট হয় না। কোন নির্দিষ্ট কোন কাজ ঘটলে তারপরে কোড গুলো এক্সিকিউট হয়। এই জন্য আমাদের ব্রাউজারকে সব সময় একটিভ থাকতে হয় এবং চেক করতে হয় যে কোন ইভেন্ট ঘটলো কিনা। ব্যাপারটাকে আর একটু বিস্তারিত ভাবে বোঝার চেষ্টা করি -
+
+প্রতিটা ইভেন্টের একটা নির্দিষ্ট নাম এবং বৈশিষ্ট্য রয়েছে। যেমন ক্লিক ইভেন্ট, শুধুমাত্র যখন কোন ইউজার ওই এলিমেন্টের ওপরে মাউস দিয়ে ক্লিক করবেন শুধু মাত্র তখনই এর সাথে এসোসিয়েটেড কোড এক্সিকিউট হবে। মাউসওভার ইভেন্ট, এলিমেন্টের ওপরে মাউস কার্সর নিয়ে গেলে ইভেন্টটা একটিভেট হবে। স্ক্রোল ইভেন্ট, যখন ইউজার স্ক্রোল করবে তখন ইভেন্টটা একটিভেট হবে। এরকম অসংখ্য ইভেন্ট রয়েছে। একটা এলিমেন্টের সাথে একই সময়ে অসংখ্য ইভেন্ট যুক্ত করা যায়। তবে একটি এলিমেন্টের সাথে একটি ইভেন্ট একবারই যুক্ত করা যায়।
+
+ইভেন্টের নামের সাথে সাথে প্রতিটা ইভেন্ট ঘটলে কিভাবে সেটাকে আমরা হ্যান্ডেল করব তার জন্য একটি করে হ্যান্ডেলার ফাংশনও অ্যাসোসিয়েটেড আছে। ডিফল্টভাবে সেটা null থাকে এবং আমরা আমাদের প্রয়োজন মত তাকে ওভাররাইড করে নিতে পারি। এই ফাংশনগুলোর ডিফল্ট ভাবে event অবজেক্ট কে আর্গুমেন্ট আকারে পেয়ে থাকে, যেখানে আমরা ইভেন্টের সাথে রিলেটেড সমস্ত তথ্য পেয়ে থাকি।
+
+আমাদের ব্রাউজার সব সময় ওয়াচ মোডে থাকে, যার ফলে যখনই কোন ইভেন্ট ঘটে সে ওই ইভেন্টের সাথে এসোসিয়েটেড ফাংশনটিকে কল করে দেই, আর আমরা আমাদের প্রত্যশিত আউটপুট দেখতে পায়।
+
+React এ এক্সট্রা করে কোন ইভেন্ট নেই, DOM এ যেই ইভেন্ট গুলো সাধারণত আমরা দেখে থাকি, সেই ইভেন্ট গুলো নিয়েই আমাদের কাজ করতে হয়। কিন্তু ইভেন্ট হ্যান্ডেল করার প্রসেসটা অল্প একটু ভিন্ন। কারণ এখানে আমরা সাধারণ HTML নিয়ে কাজ না করে JSX নিয়ে কাজ করি।
+
+## Synthetic Events
+ReactJS এ Native DOM ইভেন্টস গুলো ব্যবহার না করে সাধারণ SyntheticEvents ব্যবহার করা হয়। আসলে দুইটা ইভেন্টের ভিতরে তেমন কোন পার্থক্যই নেই। শুধুমাত্র SyntheticEvents এর ক্ষেত্রে Cross Browser সাপোর্টটা আমরা পেয়ে থাকি। React এর Synthetic Events গুলো হল -
+
+## bClipboard Events
+onCopy
+onCut
+onPaste
+## Composition Events
+onCompositionStart
+onCompositionUpdate
+onCompositionEnd
+## Keyboard Events
+onKeyDown
+onKeyUp
+onKeyPress
+## Focus Events
+onFocus
+onBlur
+## Form Events
+onChange
+onInput
+onInvalid
+onReset
+onSubmit
+## Generic Events
+onError
+onLoad
+## Mouse Events
+onClick
+onContextMenu
+onDoubleClick
+onDrag
+onDragEnd
+onDragEnter
+onDragExit
+onDragLeave
+onDragOver
+onDragStart
+onDrop
+onMouseDown
+onMosueEnter
+onMouseLeave
+onMouseMove
+onMouseOut
+onMouseOver
+onMouseUp
+## Pointer Events
+onPointerDown
+onPointerMove
+onPointerUp
+onPointerCancel
+onGotPointerCapture
+onLostPointerCapture
+onPointerEnter
+onPointerLeave
+onPointerOver
+onPointerOut
+## Selection Events
+onSelect
+## Touch Events
+onTouchCancel
+onTouchEnd
+onTouchMove
+onTouchStart
+## UI Events
+onScroll
+## Wheel Events
+onWheel
+## Media Events
+onAbort
+onCanPlay
+onCanPlayThrough
+onDurationChange
+onEmptied
+onEncrypted
+onEnded
+onError
+onLoadedData
+onLoadedMetadata
+onLoadStart
+onPause
+onPlay
+onPlaying
+onProgress
+onRateChange
+onSeeked
+onSeeking
+onStalled
+onSuspened
+onTimeUpdate
+onVolumeChange
+onWaiting
+## Image Events
+onLoad
+onError
+## Animation Events
+onAnimationStart
+onAnimationEnd
+onAnimationIteration
+## Transition Events
+onTransitionEnd
+## Other Events
+onToggle
+React এর Synthetic Events গুলো সম্পর্কে আরও বিস্তারিত জানতে React এর অফিসিয়াল ডকুমেন্টেশনটি খেয়াল করুন - https://reactjs.org/docs/events.html
+
+## Event Practice Problem
+
+প্রাকটিস প্রব্লেমঃ
+
+1. একটি বাটনের সাথে ক্লিক ইভেন্ট, ডাবল ক্লিক ইভেন্ট, মাউস এন্টার এবং মাউস লিভ ইভেন্ট যুক্ত করুন যার প্রতিটা ইভেন্টে ভিন্ন ভিন্ন কাজ হবে।
+
+2. Two Way Data বাইন্ডিং ব্যবহার করে একটি ছোট্ট কম্পোনেন্ট তৈরি করুন যেখানে আপনার নেমটা ইনপুট আকারে নেওয়া হবে। যদি ইনপুট ফিল্ডটা ফোকাস অবস্থাতে থাকে তাহলে আপনার নেমটা h3 ট্যাগ এর ভিতরে দেখাবে আর যদি ফোকাস অবস্থায় না থাকে তাহলে h1 ট্যাগ এর ভিতরে দেখাবে।
+
+3. Select input এলিমেন্ট ব্যবহার করে প্রোগ্রামিং ল্যাংগুয়েজ এর একটা লিস্ট তৈরি করুন। সেখান থেকে যেই প্রোগ্রামিং ল্যনাগুয়েজ গুলো সিলেক্ট করবেন সেগুলো নিচে লিস্ট আকারে দেখাবে।

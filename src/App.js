@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+import Input from './Components/input'
 
 class App extends Component{
   state = {
@@ -50,6 +51,9 @@ class App extends Component{
           <button onClick={this.startTimer}>Start</button>
           <button onClick={this.stopTimer}>Stop</button>
           <button onClick={this.resetTimer}>Reset</button>
+        </div>
+        <div>
+          <Input></Input>
         </div>
       </div>
     );
